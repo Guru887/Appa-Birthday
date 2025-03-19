@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Appa!</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #fdf0d5;
+            font-family: Arial, sans-serif;
+        }
+        .hero {
+            font-size: 2em;
+            margin: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .slideshow {
+            width: 300px;
+            height: 300px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        .slideshow img {
+            width: 100%;
+            display: none;
+        }
+        .message {
+            font-size: 1.5em;
+            margin: 20px;
+        }
+        .surprise-btn {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #ff6363;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="hero">🎉 Happy Birthday Appa! 🎂</h1>
+    
+    <div class="slideshow">
+        <img src="mohan.2.jpeg" alt="mohan" class="slide">
+        <img src="mohan.1.jpeg" class="slide" style="background-size: cover;">
+        <img src="mohan.3.jpeg" class="slide" style="background-size: cover;">
+        <img src="mohan.4.jpeg" class="slide" style="background-size: cover;">
+        <img src="mohan.5.jpeg" class="slide" style="background-size: cover;">
+        <img src="mohan.6.jpeg" class="slide" style="background-size: cover;">
+        <img src="mohan.7.jpeg" class="slide" style="background-size: cover;">
+    </div>
+    
+    <p class="message"> Stay happy always..! Wishing you lots of happiness ! ❤️</p>
+    
+    <button class="surprise-btn" onclick="showSurprise()">Click for a Surprise! 🎁</button>
+    
+    <audio id="birthdayMusic" loop>
+        <source src="happy-birthday-314197.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        let slides = document.querySelectorAll(".slide");
+        let index = 0;
+        
+        function showSlides() {
+            slides.forEach(slide => slide.style.display = "none");
+            index = (index + 1) % slides.length;
+            slides[index].style.display = "block";
+            setTimeout(showSlides, 2000);
+        }
+        showSlides();
+        
+        function showSurprise() {
+    let audio = document.getElementById("birthdayMusic");
+
+    // Try playing the audio with a user interaction
+    audio.play().catch(error => {
+        console.log("Autoplay prevented:", error);
+    });
+
+    // Custom Alert Box Instead of Default Alert
+    let customAlert = document.createElement("div");
+    customAlert.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+            text-align: center;
+            font-size: 1.2em;
+            z-index: 1000;
+        ">
+            <p>🎉 Guru says: Live a happy life ! Happy Birthday!Appa 🎂</p>
+            <button onclick="this.parentElement.remove()" style="
+                padding: 8px 15px;
+                background-color: #ff6363;
+                color: white;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+            ">OK</button>
+        </div>
+    `;
+    
+    document.body.appendChild(customAlert);
+    confetti(); // Trigger confetti animation
+}
+
+function confetti() {
+            let count = 200;
+            let body = document.body;
+            for (let i = 0; i < count; i++) {
+                let confettiPiece = document.createElement("div");
+                confettiPiece.style.position = "absolute";
+                confettiPiece.style.left = Math.random() * window.innerWidth + "px";
+                confettiPiece.style.top = Math.random() * window.innerHeight + "px";
+                confettiPiece.style.width = "10px";
+                confettiPiece.style.height = "10px";
+                confettiPiece.style.backgroundColor = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
+                confettiPiece.style.opacity = 0.7;
+                confettiPiece.style.transform = "rotate(" + Math.random() * 360 + "deg)";
+                body.appendChild(confettiPiece);
+
+                setTimeout(() => confettiPiece.remove(), 3000);
+            }
+        }
+
+    </script>
+</body>
+</html>
